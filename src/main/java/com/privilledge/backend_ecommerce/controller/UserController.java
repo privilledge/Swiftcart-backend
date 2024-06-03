@@ -20,7 +20,7 @@ public class UserController {
         return "User registered successfully";
     }
 
-    @PostMapping("/login")
+    @PostMapping(value="/login", consumes = "application/x-www-form-urlencoded")
     public String login(@RequestParam String email, @RequestParam String password) {
         User user = userService.findUserByEmail(email);
         if (user != null ) {
