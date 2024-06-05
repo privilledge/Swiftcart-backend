@@ -21,20 +21,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-//    public PasswordEncoder getPasswordEncoder() {
-//        return passwordEncoder;
-//    }
-
-//    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-//        this.passwordEncoder = passwordEncoder;
-//    }
-//
-//    @Autowired
-//    private PasswordEncoder passwordEncoder;
 
 
     public User saveUser(User user){
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
         return userRepository.save(user);
     }
     public User findUserByEmail(String email){
