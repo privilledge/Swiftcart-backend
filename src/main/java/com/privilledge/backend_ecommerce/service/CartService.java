@@ -21,7 +21,10 @@ public class CartService {
     public void deleteFromCart(Cart cartItem){
         cartRepository.delete(cartItem);
     }
-
+    public void deleteFromCartById(Long itemId){
+        cartRepository.deleteById(itemId);
+    }
+    public void updateItemQuantity(Cart cartItem){cartRepository.count();}
     public List<Cart> getCartItems(){
         return cartRepository.findAll();
     }

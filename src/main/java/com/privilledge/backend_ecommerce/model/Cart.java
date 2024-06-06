@@ -2,16 +2,25 @@ package com.privilledge.backend_ecommerce.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Cart {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String img;
+    private String image;
     private double price;
     private int quantity;
 
@@ -24,11 +33,11 @@ public class Cart {
     }
 
     public String getImg() {
-        return img;
+        return image;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImg(String image) {
+        this.image = image;
     }
 
     public double getPrice() {

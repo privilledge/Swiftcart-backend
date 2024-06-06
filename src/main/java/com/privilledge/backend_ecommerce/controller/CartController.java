@@ -3,6 +3,7 @@ package com.privilledge.backend_ecommerce.controller;
 
 import com.privilledge.backend_ecommerce.model.Cart;
 import com.privilledge.backend_ecommerce.service.CartService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,8 +29,17 @@ public class CartController {
         return cartService.getCartItems();
     }
 
-    @DeleteMapping("/delete")
-    public void deleteFromCart(Cart cartItem){
+    @PostMapping("/delete")
+    public void deleteFromCart(@RequestBody Cart cartItem){
         cartService.deleteFromCart(cartItem);
+    }
+    @DeleteMapping("/{itemId}")
+    public ResponseEntity<String> deleteItem(@PathVariable Long itemId){
+        cartService.deleteFromCartById(itemId);
+        return ResponseEntity.ok("Item deleted from cart");
+    }
+    @PostMapping("/update")
+    public void updateItemQuantity(@RequestBody Cart cartItem) {
+        cartService.updateItemQuantity(cartItem);
     }
 }
