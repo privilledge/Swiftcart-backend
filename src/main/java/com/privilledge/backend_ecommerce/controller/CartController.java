@@ -39,7 +39,9 @@ public class CartController {
         return ResponseEntity.ok("Item deleted from cart");
     }
     @PostMapping("/update")
-    public void updateItemQuantity(@RequestBody Cart cartItem) {
+    public ResponseEntity<String> updateItemQuantity(@RequestBody Cart cartItem) {
         cartService.updateItemQuantity(cartItem);
+        return ResponseEntity.ok("Item updated");
     }
+
 }
