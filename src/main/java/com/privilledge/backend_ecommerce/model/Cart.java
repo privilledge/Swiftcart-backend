@@ -16,13 +16,12 @@ public class Cart {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private String image;
     private double price;
-    private int quantity;
+    private int quantity=1;
 
     public String getName() {
         return name;

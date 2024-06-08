@@ -22,6 +22,7 @@ public class CartController {
     @PostMapping("/add")
     public void addItem(@RequestBody Cart cartItem){
         cartService.addToCart(cartItem);
+
     }
 
     @GetMapping

@@ -17,7 +17,7 @@ public class CartService {
     }
     public void addToCart(Cart cartItem) {
         // Check if the item already exists in the cart
-        Optional<Cart> existingItem = cartRepository.findById(cartItem.getId());
+        Optional<Cart> existingItem = cartRepository.findItemByName(cartItem.getName());
         if (existingItem.isPresent()) {
             // Item already exists, increment its quantity
             Cart existingCartItem = existingItem.get();
@@ -26,6 +26,7 @@ public class CartService {
         } else {
             // Item doesn't exist, add it to the cart
             cartRepository.save(cartItem);
+
         }
     }
 
@@ -35,7 +36,12 @@ public class CartService {
     public void deleteFromCartById(Long itemId){
         cartRepository.deleteById(itemId);
     }
-    public void updateItemQuantity(Cart cartItem){cartRepository.save(cartItem);}
+    public void updateItemQuantity(Cart cartItem){Optional<Cart> existingItem = cartRepository.findById(cartItem.getId());
+        if (existingItem.isPresent()) {
+            Cart itemToUpdate = existingItem.get();
+            itemToUpdate.setQuantity(cartItem.getQuantity());
+            cartRepository.save(itemToUpdate);
+        }}
     public List<Cart> getCartItems(){
         return cartRepository.findAll();
     }
