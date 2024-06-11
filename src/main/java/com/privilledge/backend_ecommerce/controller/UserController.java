@@ -22,9 +22,9 @@ public class UserController {
 
     @PostMapping(value="/login", consumes = "application/x-www-form-urlencoded")
     public String login(@RequestParam String email, @RequestParam String password) {
-        User user = userService.findUserByEmail(email);
-        if (user != null ) {
-            return "Login successful";
+        String token=userService.authenticateUser(email, password);
+        if (token != null ) {
+            return token;
         }
         return "Invalid username or password";
     }
