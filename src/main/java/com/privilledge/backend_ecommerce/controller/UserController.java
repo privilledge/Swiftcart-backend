@@ -20,14 +20,17 @@ public class UserController {
         return "User registered successfully";
     }
 
-    @PostMapping(value="/login", consumes = "application/x-www-form-urlencoded")
+
+    @PostMapping(value = "/login", consumes = "application/x-www-form-urlencoded")
     public String login(@RequestParam String email, @RequestParam String password) {
-        String token=userService.authenticateUser(email, password);
-        if (token != null ) {
+        String token = userService.authenticateUser(email, password);
+        if (token != null) {
             return token;
+        } else {
+            return "Invalid username or password";
         }
-        return "Invalid username or password";
     }
+
 
     @GetMapping("/user")
     public List<User> getAllUsers() {

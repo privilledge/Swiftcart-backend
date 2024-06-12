@@ -39,13 +39,21 @@ public class UserService implements UserDetailsService {
         return  userRepository.findUserByEmail(email);
     }
 
-    public String authenticateUser(String email,String password){
-        User user=findUserByEmail(email);
-        if(user!=null&&bCryptPasswordEncoder.matches(password, user.getPassword())){
+//    public String authenticateUser(String email,String password){
+//        User user=findUserByEmail(email);
+//        if(user!=null&&bCryptPasswordEncoder.matches(password, user.getPassword())){
+//            return jwtUtil.generateToken(user.getEmail());
+//        }
+//        return null;
+//    }
+    public String authenticateUser(String email, String password) {
+        User user = findUserByEmail(email);
+        if (user != null && bCryptPasswordEncoder.matches(password, user.getPassword())) {
             return jwtUtil.generateToken(user.getEmail());
         }
-        return null;
+        return null; // Return null if authentication fails
     }
+
     public List<User> getAllUsers(){
         return userRepository.findAll();
     }
